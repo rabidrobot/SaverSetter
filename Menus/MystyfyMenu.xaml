@@ -1,0 +1,51 @@
+﻿<loc:SaverMenu x:Class="Rabid.SaverSetter.MystifyMenu"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:loc="clr-namespace:Rabid.SaverSetter"
+               xmlns:rab="clr-namespace:Rabid">
+  <!--  //    Controls providing access to settings for Mystify - Mystify.scr -->
+  <!--  //    HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Screensavers\Mystify -->
+  <!--  //    CameraFOV   [Integer] ~ 1,000,000,000 to 1,100,000,000 -->
+  <!--  //    LineWidth  [Integer] ~ 1,000,000,000 to 1,080,000,000 -->
+  <!--  //    NumLines   [Integer] ~ 1 to 16 -->
+  <DockPanel>
+    <Border BorderBrush="{StaticResource ResourceKey={x:Static SystemColors.WindowFrameBrushKey}}"
+            Background="{StaticResource kControlBackground}"
+            BorderThickness="1"
+            DockPanel.Dock="Top"
+            Margin="0"
+            Padding="4">
+      <GroupBox DockPanel.Dock="Top"
+                Background="{StaticResource ResourceKey={x:Static SystemColors.ControlBrushKey}}"
+                BorderBrush="{StaticResource ResourceKey={x:Static SystemColors.ActiveBorderBrushKey}}"
+                Padding="8,16,8,8">
+        <GroupBox.Header>
+          <StackPanel Orientation="Horizontal">
+            <loc:MenuCommands />
+            <TextBlock Text="Screensaver Options"
+                       Margin="4,2,4,2"
+                       VerticalAlignment="Center" />
+          </StackPanel>
+        </GroupBox.Header>
+        <StackPanel Grid.IsSharedSizeScope="True"
+                    DockPanel.Dock="Top">
+          <rab:AnnotatedScaledSlider Text="Field of View"
+                                     Value="{Binding Path=CameraFOV, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=loc:MystifyMenu}, Mode=TwoWay}"
+                                     Minimum="1020000000"
+                                     Maximum="1080000000" />
+          <rab:AnnotatedScaledSlider Text="Line Width"
+                                     Value="{Binding Path=LineWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=loc:MystifyMenu}, Mode=TwoWay}"
+                                     Minimum="1000000000"
+                                     Maximum="1080000000" />
+          <rab:AnnotatedScaledSlider Text="Line Count"
+                                     Value="{Binding Path=NumLines, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=loc:MystifyMenu}, Mode=TwoWay}"
+                                     Minimum="1"
+                                     Maximum="16" />
+        </StackPanel>
+      </GroupBox>
+    </Border>
+    <loc:CommandButtons DockPanel.Dock="Bottom"
+                        Margin="0,36,8,4"
+                        HorizontalAlignment="Right" />
+  </DockPanel>
+</loc:SaverMenu>

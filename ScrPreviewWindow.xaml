@@ -1,0 +1,11 @@
+﻿<Window x:Class="Rabid.SaverSetter.ScrPreviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Name="xWindow_Preview"
+        AllowsTransparency="False"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="CanResizeWithGrip"
+        MouseDown="OnMouseDown"
+        Icon="/SaverSetter;component/saversetter.ico"
+        ShowInTaskbar="True">
+</Window>

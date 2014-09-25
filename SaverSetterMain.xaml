@@ -1,0 +1,21 @@
+﻿<Window x:Class="Rabid.SaverSetter.SaverSetterMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loc="clr-namespace:Rabid.SaverSetter"
+        Title="Extended Screensaver Settings"
+        x:Name="xThisRoot"
+        AllowsTransparency="False"
+        WindowStyle="ThreeDBorderWindow"
+        Topmost="True"
+        Icon="/SaverSetter;component/saversetter.ico"
+        ShowInTaskbar="True"
+        SizeToContent="WidthAndHeight"
+        Background="Transparent"
+        ResizeMode="CanMinimize"
+        HorizontalContentAlignment="Center"
+        VerticalContentAlignment="Center"
+        MouseLeftButtonDown="SaverSetterMain_MouseDown">
+  <StackPanel>
+    <loc:MasterMenu />
+  </StackPanel>
+</Window>

@@ -1,0 +1,73 @@
+﻿<loc:SaverMenu x:Class="Rabid.SaverSetter.BubblesMenu"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:loc="clr-namespace:Rabid.SaverSetter"
+               xmlns:rab="clr-namespace:Rabid">
+  <!--  //    Controls providing access to settings for Bubbles.scr -->
+  <!--  //    HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Screensavers\Bubbles -->
+  <!--  //    MaterialGlass         [Boolean]     0=Transparent glass bubbles, 1=Opaque metallic bubbles -->
+  <!--  //    Radius                [Integer]     Smaller values mean more bubbles, larger values mean bigger bubbles -->
+  <!--  //    TurbulenceNumOctaves  [Integer16]   Values 1-255 set color cycling rate -->
+  <!--  //    ShowShadows           [Boolean]     1 enables shadows from bubbles, 0 disables -->
+  <!--  //    SphereDensity         [Integer]     Between 1,000,000,000 and 2,100,000,000 -->
+  <!--  //    TurbulenceForce       [Integer]     Unknown Effect ~1,000,000,000 and up -->
+  <!--  //    TurbulenceSpeed       [Integer]     Unknown Effect -->
+  <!--  //    BMP                   [String(?)]   Unknown Effect -->
+  <DockPanel>
+    <Border BorderBrush="{StaticResource ResourceKey={x:Static SystemColors.WindowFrameBrushKey}}"
+            Background="{StaticResource kControlBackground}"
+            BorderThickness="1"
+            DockPanel.Dock="Top"
+            Margin="0"
+            Padding="4">
+      <GroupBox DockPanel.Dock="Top"
+                Background="{StaticResource ResourceKey={x:Static SystemColors.ControlBrushKey}}"
+                BorderBrush="{StaticResource ResourceKey={x:Static SystemColors.ActiveBorderBrushKey}}"
+                Padding="8,16,8,8">
+        <GroupBox.Header>
+          <StackPanel Orientation="Horizontal">
+            <loc:MenuCommands />
+            <TextBlock Text="Screensaver Options"
+                       Margin="4,2,4,2"
+                       VerticalAlignment="Center" />
+          </StackPanel>
+        </GroupBox.Header>
+        <StackPanel Grid.IsSharedSizeScope="True">
+          <StackPanel HorizontalAlignment="Center"
+                      Orientation="Horizontal">
+            <StackPanel.Resources>
+              <Style TargetType="{x:Type CheckBox}">
+                <Setter Property="Margin"
+                        Value="2,3,2,3" />
+              </Style>
+            </StackPanel.Resources>
+            <CheckBox Content="Transparent Bubbles"
+                      IsChecked="{Binding Path=MaterialGlass, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=loc:BubblesMenu}}" />
+            <CheckBox Content="Bubble Shadows"
+                      IsChecked="{Binding Path=ShowShadows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=loc:BubblesMenu}}" />
+            <CheckBox Content="Show Desktop"
+                      IsChecked="{Binding Path=ShowBubbles, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=loc:BubblesMenu}}" />
+          </StackPanel>
+          <StackPanel Margin="0,16,0,0"
+                      Grid.IsSharedSizeScope="True">
+            <rab:AnnotatedScaledSlider Text="Bubble Radius"
+                                       Value="{Binding Path=Radius, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=loc:BubblesMenu}, Mode=TwoWay}"
+                                       Minimum="1100000000"
+                                       Maximum="1130000000" />
+            <rab:AnnotatedScaledSlider Text="Bubble Density"
+                                       Value="{Binding Path=SphereDensity, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=loc:BubblesMenu}, Mode=TwoWay}"
+                                       Minimum="1040000000"
+                                       Maximum="1080000000" />
+            <rab:AnnotatedScaledSlider Text="Color Turbulence"
+                                       Value="{Binding Path=TurbulenceNumOctaves, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=loc:BubblesMenu}, Mode=TwoWay}"
+                                       Minimum="0"
+                                       Maximum="32" />
+          </StackPanel>
+        </StackPanel>
+      </GroupBox>
+    </Border>
+    <loc:CommandButtons DockPanel.Dock="Bottom"
+                        Margin="0,36,8,4"
+                        HorizontalAlignment="Right" />
+  </DockPanel>
+</loc:SaverMenu>

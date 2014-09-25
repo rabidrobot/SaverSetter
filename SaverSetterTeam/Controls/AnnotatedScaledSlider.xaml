@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Rabid.AnnotatedScaledSlider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:rab="clr-namespace:Rabid"
+             xmlns:con="clr-namespace:Rabid.Conversion">
+  <UserControl.Resources>
+    <con:RelativeValueConverter x:Key="kConverter" />
+    <Style TargetType="{x:Type Slider}">
+      <Setter Property="IsMoveToPointEnabled"
+              Value="true" />
+      <Setter Property="Delay"
+              Value="0" />
+      <Setter Property="ToolTip">
+        <Setter.Value>
+          <MultiBinding Converter="{StaticResource kConverter}">
+            <Binding Path="Maximum"
+                     RelativeSource="{RelativeSource Self}" />
+            <Binding Path="Minimum"
+                     RelativeSource="{RelativeSource Self}" />
+            <Binding Path="Value"
+                     RelativeSource="{RelativeSource Self}" />
+          </MultiBinding>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Value"
+              Value="{Binding Path=Value, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=rab:AnnotatedScaledSlider}}" />
+      <Setter Property="Maximum"
+              Value="{Binding Path=Maximum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=rab:AnnotatedScaledSlider}}" />
+      <Setter Property="Minimum"
+              Value="{Binding Path=Minimum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=rab:AnnotatedScaledSlider}}" />
+    </Style>
+  </UserControl.Resources>
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition SharedSizeGroup="LabelGroup" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition SharedSizeGroup="ValueGroup"
+                        MinWidth="32" />
+    </Grid.ColumnDefinitions>
+    <Label Grid.Column="0"
+           Content="{Binding Path=Text, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=rab:AnnotatedScaledSlider}}" />
+    <Slider x:Name="xSlider"
+            Grid.Column="1" />
+    <Label Grid.Column="2"
+           Content="{Binding ElementName=xSlider, Path=ToolTip}" />
+  </Grid>
+
+</UserControl>
